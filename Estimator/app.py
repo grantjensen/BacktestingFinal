@@ -27,10 +27,10 @@ def main(args):
         for message in consumer:#Iterate through Kafka messages received
             data=message.value
             logging.info(data)
-            prices=data['c']
+            prices=data['c'][-6:]
             if (len(prices)<6):
                 continue
-            volume=data['v']
+            volume=data['v'][-6:]
             log_prices=np.log(np.divide(prices[1:],prices[:-1]))
             ticker=1 #Currently hard coded in bc we are only using SPY
             inp=[0]*11
