@@ -17,7 +17,7 @@ def main(args):
     while(True):
         new_time=int(time.time())
         if(new_time>=old_time+60):#Check for new minute candlestick data every 60 seconds
-            data=requests.get('https://finnhub.io/api/v1/stock/candle?symbol=SPY&resolution=1&from='+str(new_time-60)+'&to='+str(new_time)+'&token='+args.token)
+            data=requests.get('https://finnhub.io/api/v1/stock/candle?symbol=SPY&resolution=1&from='+str(new_time-60)+'&to='+str(new_time)+'&token='+args.token).json()
             old_time=new_time
             if (data['s']!='no_data'):
                 logging.info(data.json())#Print data
