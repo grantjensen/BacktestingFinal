@@ -27,6 +27,6 @@ oc new-app centos/python-36-centos7~https://github.com/grantjensen/BacktestingFi
 oc new-app centos/python-36-centos7~https://github.com/grantjensen/BacktestingFinal \
 --context-dir=Estimator \
 -e KAFKA_BROKERS=kafka:9092 \
--e KAFKA_TOPIC=my_topic \  
+-e KAFKA_READ_TOPIC=my_topic \  
 -e MODEL_URL=https://raw.githubusercontent.com/grantjensen/BacktestingFinal/master/myModel.cpickle \
 --name estimator
