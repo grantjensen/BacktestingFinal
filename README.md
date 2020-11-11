@@ -30,3 +30,5 @@ oc new-app centos/python-36-centos7~https://github.com/grantjensen/BacktestingFi
 -e KAFKA_READ_TOPIC=my_topic \  
 -e MODEL_URL=https://raw.githubusercontent.com/grantjensen/BacktestingFinal/master/myModel.cpickle \
 --name estimator
+
+6. Add a persistent volume to keep track of past predictions and make decisions on whether the model is performing well. This is accomplished by going to the OpenShift UI, go to the estimator application, and select "Add Storage". For the mount point choose "/data", as that's what is specified in Estimator/app.py. 
