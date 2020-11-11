@@ -17,9 +17,12 @@ def main(args):
     while(True):
         new_time=int(time.time())
         if(new_time>=old_time+60):#Check for new minute candlestick data every 60 seconds
-            data=requests.get('https://finnhub.io/api/v1/stock/candle?symbol=SPY&resolution=1&from='+str(new_time-60)+'&to='+str(new_time)+'&token=brmf0inrh5re15om3qog')
-            logging.info(data.json())#Print data
-            producer.send(args.topic, value=data.json())#Send data to Kafka
+            data=requests.get('https://finnhub.io/api/v1/stock/candle?symbol=SPY&resolution=1&from='+str(new_time-60)+'&to='+str(new_time)+'&token='+args.token)
+            old_time=new_time
+            if (data['s']!='no_data'):
+                logging.info(data.json())#Print data
+                producer.send(args.topic, value=data.json())#Send data to Kafka
+
             
             
 def get_arg(env, default):
@@ -29,6 +32,7 @@ def parse_args(parser):
     args = parser.parse_args()
     args.brokers = get_arg('KAFKA_BROKERS', args.brokers)
     args.topic = get_arg('KAFKA_TOPIC', args.topic)
+    args.token=get_arg('TOKEN',args.token)
     return args
             
 if __name__ == '__main__':
@@ -43,6 +47,10 @@ if __name__ == '__main__':
             '--topic',
             help='Topic to write to, env variable KAFKA_TOPIC',
             default='benign-images')
+    parser.add_argument(
+            '--token',
+            help='20 digit alphanumeric token from Finnhub.io',
+            default='')
     cmdline_args = parse_args(parser)
     main(cmdline_args)
     logging.info('exiting')
