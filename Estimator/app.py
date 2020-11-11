@@ -39,7 +39,7 @@ def main(args):
             for i in range(6,11):
                 inp[i]=log_prices[10-i]
             logging.info("Input: "+str(data['t'][0])+" "+str(inp))
-            f=open('/data/final/myData.txt','w')#Write data to pvc mountd to /data/final
+            f=open('/data/myData.txt','w')#Write data to pvc mountd to /data
             f.write(str(data['t'][0])+" "+ str(log_prices[0])+" "+ str(prediction))
             f.close()
             prediction=model.predict([inp])[0]
