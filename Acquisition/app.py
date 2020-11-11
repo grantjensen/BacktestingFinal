@@ -22,7 +22,8 @@ def main(args):
             if (data['s']!='no_data'):
                 logging.info(data.json())#Print data
                 producer.send(args.topic, value=data.json())#Send data to Kafka
-
+            else:
+                logging.info("No new data available")
             
             
 def get_arg(env, default):
