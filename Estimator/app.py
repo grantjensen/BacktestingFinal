@@ -92,7 +92,7 @@ if __name__ == '__main__':
     parser.add_argument(
             '--model',
             help='URL of base model to retrain, env variable MODEL_URL',
-            default='https://raw.githubusercontent.com/grantjensen/Backtesting2/master/myModel2.cpickle')
+            default='https://raw.githubusercontent.com/grantjensen/BacktestingFinal/master/myModel.cpickle')
     
 
     args = parse_args(parser)
