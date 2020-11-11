@@ -47,7 +47,7 @@ if __name__ == '__main__':
     parser.add_argument(
             '--topic',
             help='Topic to write to, env variable KAFKA_TOPIC',
-            default='benign-images')
+            default='my_topic')
     parser.add_argument(
             '--token',
             help='20 digit alphanumeric token from Finnhub.io',

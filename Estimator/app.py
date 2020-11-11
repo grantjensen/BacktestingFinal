@@ -26,6 +26,7 @@ def main(args):
     while True:
         for message in consumer:#Iterate through Kafka messages received
             data=message.value
+            logging.info(data)
             prices=data['c']
             if (len(prices)<6):
                 continue
