@@ -13,12 +13,13 @@ oc create -f https://raw.githubusercontent.com/EldritchJS/adversarial_pipeline/m
 oc new-app strimzi
 
 3. Wait for the pods to spin up (can check progress on OpenShift UI).
-4. Start Acquisition service with the following CLI:
+4. Start Acquisition service with the following CLI. Make sure to replace *MY TOKEN HERE* with your token from a Finnhub.io account.
 
 oc new-app centos/python-36-centos7~https://github.com/grantjensen/BacktestingFinal \
 --context-dir=Acquisition \
 -e KAFKA_BROKERS=kafka:9092 \
 -e KAFKA_TOPIC=my_topic \
+-e TOKEN=*MY TOKEN HERE* \
 --name acquisition
 
 5. Start Estimator service with the following CLI:
