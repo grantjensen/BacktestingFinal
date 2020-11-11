@@ -4,6 +4,7 @@ import time
 import logging
 import argparse 
 import os
+from json import dumps
 
 def main(args):
     logging.info('brokers={}'.format(args.brokers))
