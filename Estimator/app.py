@@ -21,12 +21,12 @@ def main(args):
     logging.info("finished creating kafka consumer")
 
     model=cp.load(urlopen(args.model))
-
+    
+    prediction=0
     called=False#Boolean to detect whether we've checked if the model is out of date today
     while True:
         for message in consumer:#Iterate through Kafka messages received
             data=message.value
-            logging.info(data)
             prices=data['c'][-6:]
             if (len(prices)<6):
                 continue
