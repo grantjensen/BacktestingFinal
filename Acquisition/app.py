@@ -16,7 +16,7 @@ def main(args):
     while(True):
         new_time=int(time.time())
         if(new_time>=old_time+60):#Check for new minute candlestick data every 60 seconds
-            data=requests.get('https://finnhub.io/api/v1/stock/candle?symbol=SPY&resolution=1&from='+new_time-60+'&to='+new_time+'&token=brmf0inrh5re15om3qog')
+            data=requests.get('https://finnhub.io/api/v1/stock/candle?symbol=SPY&resolution=1&from='+str(new_time-60)+'&to='+str(new_time)+'&token=brmf0inrh5re15om3qog')
             logging.info(data)#Print data
             producer.send(args.topic, value=data)#Send data to Kafka
             
